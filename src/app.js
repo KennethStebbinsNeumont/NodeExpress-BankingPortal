@@ -42,10 +42,10 @@ app.get('/transfer', (req, res) => {
 });
 
 app.post('/transfer', (req, res) => {
-    accounts[req.body.from].balance = accounts[req.body.from].balance - parseMoney(req.body.amount);
-    accounts[req.body.to].balance = accounts[req.body.to].balance + parseMoney(req.body.amount);
+    accounts[req.body.from].balance = accounts[req.body.from].balance - parssInt(req.body.amount);
+    accounts[req.body.to].balance = accounts[req.body.to].balance + parseInt(req.body.amount);
     var accountsJSON = JSON.stringify(accounts);
-    fs.writeFileSync(path.join(__dirname, 'json', 'accounts.json'), accountsJSON, { encoding: 'utf8' });
+    fs.writeFileSync(path.join(__dirname, 'json', 'accounts.json'), accountsJSON, 'utf8');
     res.render('transfer', { message: "Transfer Completed" });
 });
 
@@ -54,10 +54,10 @@ app.get('/payment', (req, res) => {
 });
 
 app.post('/payment', (req, res) => {
-    accounts.credit.balance = accounts.credit.balance - parseMoney(req.body.amount);
-    accounts.credit.available = accounts.credit.available + parseMoney(req.body.amount);
+    accounts.credit.balance = accounts.credit.balance - parseInt(req.body.amount);
+    accounts.credit.available = accounts.credit.available + parseInt(req.body.amount);
     var accountsJSON = JSON.stringify(accounts);
-    fs.writeFileSync(path.join(__dirname, 'json', 'accounts.json'), accountsJSON, { encoding: 'utf8' });
+    fs.writeFileSync(path.join(__dirname, 'json', 'accounts.json'), accountsJSON, 'utf8');
     res.render('payment', { message: "Payment Successful", account: accounts.credit });
 });
 
