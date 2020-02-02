@@ -42,7 +42,7 @@ app.get('/transfer', (req, res) => {
 });
 
 app.post('/transfer', (req, res) => {
-    accounts[req.body.from].balance = accounts[req.body.from].balance - parssInt(req.body.amount);
+    accounts[req.body.from].balance = accounts[req.body.from].balance - parseInt(req.body.amount);
     accounts[req.body.to].balance = accounts[req.body.to].balance + parseInt(req.body.amount);
     var accountsJSON = JSON.stringify(accounts);
     fs.writeFileSync(path.join(__dirname, 'json', 'accounts.json'), accountsJSON, 'utf8');
