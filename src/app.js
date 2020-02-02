@@ -61,8 +61,8 @@ app.post('/payment', (req, res) => {
     res.render('payment', { message: "Payment Successful", account: accounts.credit });
 });
 
-app.listen(3000, () => console.log('PS Project Running on port 3000!'));
-
 function parseMoney(string) {
     return parseFloat(parseFloat(string).toFixed(2))
 }
+
+app.listen(3000, () => console.log('PS Project Running on port 3000!'));
